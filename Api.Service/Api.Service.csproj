@@ -9,4 +9,8 @@
     <ProjectReference Include="..\Api.Infra.Data\Api.Infra.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>
