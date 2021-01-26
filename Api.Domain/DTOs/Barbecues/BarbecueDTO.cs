@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Api.Domain.Entities;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Api.Domain.DTOs.Barbecues
@@ -17,5 +19,11 @@ namespace Api.Domain.DTOs.Barbecues
         public string Description { get; set; }
 
         public string AdditionalNotes { get; set; }
+
+        public List<Participant> Participants { get; set; }
+
+        public int TotalParticipants { get; set; }
+
+        public decimal TotalValue { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace Api.Infra.Data.Mappings
                    .HasDefaultValue(0);
 
             builder.Property(x => x.SugestedValueWithDink)
-                   .HasDefaultValue(0);
+                   .HasDefaultValue(0);          
         }
     }
 }

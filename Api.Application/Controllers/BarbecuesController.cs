@@ -1,4 +1,5 @@
 ﻿using Api.Domain.DTOs.Barbecues;
+using Api.Domain.DTOs.Participants;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces.Services.BarbecueService;
 using Microsoft.AspNetCore.Http;
@@ -43,11 +44,11 @@ namespace Api.Application.Controllers
         {
             try
             {
-                var comment = await _service.GetAsync(id);
-                if (comment == null)
+                var barbecue = await _service.GetAsync(id);
+                if (barbecue == null)
                     return NotFound($"Barbecue with id {id} not found");
                 else
-                    return new ObjectResult(comment);
+                    return new ObjectResult(barbecue);
             }
             catch
             {
@@ -101,7 +102,7 @@ namespace Api.Application.Controllers
 
                 return StatusCode(StatusCodes.Status200OK, "Barbecue deleted succesfull");
             }
-            catch (Exception)
+            catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error when try to delete barbecue");
             }
@@ -111,6 +112,41 @@ namespace Api.Application.Controllers
         public async Task<IEnumerable<Participant>> GetParticipants([BindRequired] int barbecueId)
         {
             return await _service.BarbecueParticipants(barbecueId);
+        }
+
+        [HttpPost("participants")]
+        public async Task<ActionResult> AddParticipantsOnBarbecue([FromBody] ParticipantDTO participant)
+        {
+            try
+            {
+                if (participant == null || participant.BarbecueId <= 0)
+                    return BadRequest("Please, make sure you are filling in the fields correctly!");
+
+                var result = await _service.AddParticipantsOnBarbecue(participant);
+                return new ObjectResult(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error when try to add barbecue participants: {ex.Message}");
+            }
+        }
+
+        [HttpDelete("participants/{participantId:int}")]
+        public async Task<ActionResult> RemoveParticipantsFromBarbecue([BindRequired] int participantId)
+        {
+            try
+            {
+                if (participantId <= 0)
+                    return BadRequest("Please, make sure you are correctly parameters!");
+
+                await _service.RemoveParticipantsFromBarbecue(participantId);
+
+                return StatusCode(StatusCodes.Status200OK, "Participant deleted succesfull");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error when try to remove participant from barbecue: {ex.Message}");
+            }
         }
     }
 }
