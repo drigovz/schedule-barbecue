@@ -1,4 +1,6 @@
 using Api.Infra.CrossCutting.DependencyInjection;
+using Api.Infra.CrossCutting.Mappings;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +22,14 @@ namespace Api.Application
         {
             ConfigureRepository.ConfigureDependenciesRepository(services);
             ConfigureService.ConfigureDependenciesServices(services);
+            var config = new MapperConfiguration(x =>
+            {
+                x.AddProfile(new DtoToModelProfile());
+            });
+
+            IMapper mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
+
             services.AddControllers();
         }
 

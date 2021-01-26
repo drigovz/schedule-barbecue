@@ -1,6 +1,8 @@
-﻿using Api.Domain.Entities;
+﻿using Api.Domain.DTOs.Barbecues;
+using Api.Domain.Entities;
 using Api.Domain.Interfaces;
 using Api.Domain.Interfaces.Services.BarbecueService;
+using AutoMapper;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,30 +11,40 @@ namespace Api.Service.Services
     public class BarbecueService : IBarbecueService
     {
         private readonly IRepository<Barbecue> _repository;
+        private readonly IMapper _mapper;
 
-        public BarbecueService(IRepository<Barbecue> repository)
+        public BarbecueService(IRepository<Barbecue> repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public async Task<IEnumerable<Barbecue>> GetAllAsync()
+        public async Task<IEnumerable<BarbecueDTO>> GetAllAsync()
         {
-            return await _repository.GetAsync();
+            var barbecues = await _repository.GetAsync();
+            return _mapper.Map<IEnumerable<BarbecueDTO>>(barbecues);
         }
 
-        public async Task<Barbecue> GetAsync(int id)
+        public async Task<BarbecueDTO> GetAsync(int id)
         {
-            return await _repository.GetByIdAsync(id);
+            var barbecue = await _repository.GetByIdAsync(id);
+            return _mapper.Map<BarbecueDTO>(barbecue);
         }
 
-        public async Task<Barbecue> PostAsync(Barbecue barbecue)
+        public async Task<BarbecueDTO> PostAsync(BarbecueDTO barbecue)
         {
-            return await _repository.AddAsync(barbecue);
+            var entity = _mapper.Map<Barbecue>(barbecue);
+            var result = await _repository.AddAsync(entity);
+
+            return _mapper.Map<BarbecueDTO>(result);
         }
 
-        public async Task<Barbecue> PutAsync(Barbecue barbecue)
+        public async Task<BarbecueDTO> PutAsync(BarbecueDTO barbecue)
         {
-            return await _repository.UpdateAsync(barbecue);
+            var entity = _mapper.Map<Barbecue>(barbecue);
+            var result = await _repository.UpdateAsync(entity);
+
+            return _mapper.Map<BarbecueDTO>(result);
         }
 
         public async Task<bool> DeleteAsync(int id)

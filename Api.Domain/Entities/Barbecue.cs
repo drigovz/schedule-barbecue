@@ -11,7 +11,7 @@ namespace Api.Domain.Entities
         public string AdditionalNotes { get; private set; }
         public ICollection<Participant> Participants { get; private set; } = new Collection<Participant>();
 
-        private Barbecue()
+        public Barbecue()
         {
         }
 

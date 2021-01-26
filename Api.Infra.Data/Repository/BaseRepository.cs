@@ -26,7 +26,7 @@ namespace Api.Infra.Data.Repository
         {
             try
             {
-                return await _context.Set<T>().AsNoTracking().ToListAsync();
+                return await _context.Set<T>().ToListAsync();
             }
             catch (Exception ex)
             {
@@ -38,7 +38,7 @@ namespace Api.Infra.Data.Repository
         {
             try
             {
-                return await _context.Set<T>().AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+                return await _context.Set<T>().SingleOrDefaultAsync(x => x.Id == id);
             }
             catch (Exception ex)
             {
