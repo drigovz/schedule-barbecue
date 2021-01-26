@@ -19,6 +19,7 @@ namespace Api.Application
         public void ConfigureServices(IServiceCollection services)
         {
             ConfigureRepository.ConfigureDependenciesRepository(services);
+            ConfigureService.ConfigureDependenciesServices(services);
             services.AddControllers();
         }
 
