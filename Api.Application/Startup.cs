@@ -1,3 +1,4 @@
+using Api.Infra.CrossCutting.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +18,7 @@ namespace Api.Application
 
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureRepository.ConfigureDependenciesRepository(services);
             services.AddControllers();
         }
 
