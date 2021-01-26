@@ -8,6 +8,10 @@ namespace Api.Domain.Entities
 
         public decimal ContribuitionValue { get; private set; }
 
+        public Barbecue Barbecue { get; set; }
+
+        public int BarbecueId { get; set; }
+
         private decimal _sugestedValue;
 
         public decimal SugestedValue

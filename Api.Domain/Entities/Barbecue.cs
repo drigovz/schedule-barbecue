@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Api.Domain.Entities
 {
@@ -7,6 +9,7 @@ namespace Api.Domain.Entities
         public DateTime Date { get; private set; }
         public string Description { get; private set; }
         public string AdditionalNotes { get; private set; }
+        public ICollection<Participant> Participants { get; private set; } = new Collection<Participant>();
 
         private Barbecue()
         {
