@@ -1,6 +1,6 @@
 ﻿using Api.Domain.DTOs.Barbecues;
 using Api.Domain.Entities;
-using Api.Domain.Interfaces;
+using Api.Domain.Interfaces.Repository;
 using Api.Domain.Interfaces.Services.BarbecueService;
 using AutoMapper;
 using System.Collections.Generic;
@@ -10,10 +10,10 @@ namespace Api.Service.Services
 {
     public class BarbecueService : IBarbecueService
     {
-        private readonly IRepository<Barbecue> _repository;
+        private readonly IBarbecueRepository _repository;
         private readonly IMapper _mapper;
 
-        public BarbecueService(IRepository<Barbecue> repository, IMapper mapper)
+        public BarbecueService(IBarbecueRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -50,6 +50,11 @@ namespace Api.Service.Services
         public async Task<bool> DeleteAsync(int id)
         {
             return await _repository.DeleteAsync(id);
+        }
+
+        public async Task<IEnumerable<Participant>> BarbecueParticipants(int barbecueId)
+        {
+            return await _repository.BarbecueParticipants(barbecueId);
         }
     }
 }

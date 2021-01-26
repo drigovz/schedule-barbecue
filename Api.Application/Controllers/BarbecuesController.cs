@@ -1,4 +1,5 @@
 ﻿using Api.Domain.DTOs.Barbecues;
+using Api.Domain.Entities;
 using Api.Domain.Interfaces.Services.BarbecueService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -104,6 +105,12 @@ namespace Api.Application.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error when try to delete barbecue");
             }
+        }
+
+        [HttpGet("participants/{barbecueId:int}")]
+        public async Task<IEnumerable<Participant>> GetParticipants([BindRequired] int barbecueId)
+        {
+            return await _service.BarbecueParticipants(barbecueId);
         }
     }
 }

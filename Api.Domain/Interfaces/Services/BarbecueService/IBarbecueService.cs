@@ -1,4 +1,5 @@
 ﻿using Api.Domain.DTOs.Barbecues;
+using Api.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,5 +12,6 @@ namespace Api.Domain.Interfaces.Services.BarbecueService
         Task<BarbecueDTO> PostAsync(BarbecueDTO category);
         Task<BarbecueDTO> PutAsync(BarbecueDTO category);
         Task<bool> DeleteAsync(int id);
+        Task<IEnumerable<Participant>> BarbecueParticipants(int barbecueId);
     }
 }
