@@ -1,3 +1,4 @@
+using Api.Infra.Data.Seeding;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
@@ -7,6 +8,7 @@ namespace Api.Application
     {
         public static void Main(string[] args)
         {
+            DatabaseGenerator.Seed();
             CreateHostBuilder(args).Build().Run();
         }
 
