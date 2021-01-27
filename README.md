@@ -12,7 +12,7 @@
 * **Postman** documentation: [https://documenter.getpostman.com/view/8881646/TW6wJoQY](https://documenter.getpostman.com/view/8881646/TW6wJoQY)
 
 ### Class Diagram
-![ClassDiagram](https://docs.google.com/uc?id=17ZpoEhMRj0PHt2IyYH3n4Sd-cCkGszKP)
+![ClassDiagram](https://i.ibb.co/5G4668X/classdiagrambarbecue.png)
 
 ### Libs, Frameworks and Techs
 * Newtonsoft Json
