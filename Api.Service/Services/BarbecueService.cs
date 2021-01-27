@@ -47,6 +47,7 @@ namespace Api.Service.Services
             var barbecue = await _repository.GetByIdAsync(id);
             var barbecueDTO = _mapper.Map<BarbecueDetailsDTO>(barbecue);
             var participants = await BarbecueParticipants(id);
+
             var participantsDTO = _mapper.Map<IEnumerable<ParticipantDTO>>(participants.ToList());
             barbecueDTO.Participants = participantsDTO.ToList();
             barbecueDTO.TotalValue = await TotalValueParticipants(id);

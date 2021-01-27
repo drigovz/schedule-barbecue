@@ -30,8 +30,8 @@ namespace Api.Application.Controllers
         {
             try
             {
-                var comments = await _service.GetAllAsync();
-                return comments.ToList();
+                var barbecues = await _service.GetAllAsync();
+                return barbecues.ToList();
             }
             catch
             {
@@ -120,7 +120,7 @@ namespace Api.Application.Controllers
             try
             {
                 if (participant == null || participant.BarbecueId <= 0)
-                    return BadRequest("Please, make sure you are filling in the fields correctly!");
+                    return BadRequest("Please, make sure to fill in the fields correctly!");
 
                 var result = await _service.AddParticipantsOnBarbecue(participant);
                 return new ObjectResult(result);
