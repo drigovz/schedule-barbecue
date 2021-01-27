@@ -25,6 +25,10 @@ namespace Api.Application.Controllers
             _service = service;
         }
 
+        /// <summary>
+        /// Buscar todos os churrascos cadastrados
+        /// </summary>
+        /// <returns>Retorna uma lista com todos os churrascos cadastrados no banco de dados</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BarbecueDTO>>> GetAll()
         {
@@ -39,6 +43,11 @@ namespace Api.Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Exibe detalhes de um determinado churrasco
+        /// </summary>
+        /// <param name="id">ID do churrasco</param>
+        /// <returns>Retorna um objeto contendo todos os detalhes de um churrasco</returns>
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([BindRequired] int id)
         {
@@ -56,6 +65,11 @@ namespace Api.Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Insere um novo churrasco na base de dados.
+        /// </summary>
+        /// <param name="barbecue">Dados do churrasco a ser inserido</param>
+        /// <returns>Retorna informações do novo churrasco inserido</returns>
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] BarbecueDTO barbecue)
         {
@@ -70,6 +84,12 @@ namespace Api.Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza informações de um churrasco
+        /// </summary>
+        /// <param name="id">ID do churrasco a ser atualizado</param>
+        /// <param name="barbecue">Dados do churrasco a ser atualizado</param>
+        /// <returns>Retorna mensagem de sucesso em atualizações bem sucedidas</returns>
         [HttpPut("{id:int}")]
         public async Task<ActionResult> Update([BindRequired] int id, [FromBody] BarbecueDTO barbecue)
         {
@@ -89,6 +109,11 @@ namespace Api.Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Exclui um churrasco cadastrado
+        /// </summary>
+        /// <param name="id">ID do churrasco a ser excluído</param>
+        /// <returns>Mensagem de exclusão bem sucedida</returns>
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete([BindRequired] int id)
         {
@@ -108,12 +133,22 @@ namespace Api.Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Lista todos os participantes de um determinado churrasco
+        /// </summary>
+        /// <param name="barbecueId">ID do churrasco no qual se deseja ver os participantes</param>
+        /// <returns>Retorna uma lista de participantes do churrasco</returns>
         [HttpGet("participants/{barbecueId:int}")]
         public async Task<IEnumerable<Participant>> GetParticipants([BindRequired] int barbecueId)
         {
             return await _service.BarbecueParticipants(barbecueId);
         }
 
+        /// <summary>
+        /// Incluir um participante no churrasco
+        /// </summary>
+        /// <param name="participant">Informações do participant do churrasco</param>
+        /// <returns>Retorna um objeto com informações do participante adicionado</returns>
         [HttpPost("participants")]
         public async Task<ActionResult> AddParticipantsOnBarbecue([FromBody] ParticipantDTO participant)
         {
@@ -131,6 +166,11 @@ namespace Api.Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Remove um participante do churrasco
+        /// </summary>
+        /// <param name="participantId">ID do participante a ser removido</param>
+        /// <returns>Retorna mensagem de participante removido</returns>
         [HttpDelete("participants/{participantId:int}")]
         public async Task<ActionResult> RemoveParticipantsFromBarbecue([BindRequired] int participantId)
         {
