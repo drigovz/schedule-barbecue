@@ -8,7 +8,7 @@
 * For the application work correctly, modify the connection string to the SQL Server instance of your local database or some database in the cloud.
 
 ### API Documentations
-* Access **Swagger** documentation before the application start: [http://localhost:50979/swagger/ui/index.html](http://localhost:50979/swagger/ui/index.html) 
+* Access **Swagger** documentation before the application start: [http://localhost:5000/swagger/ui/index.html](http://localhost:5000/swagger/ui/index.html) 
 * **Postman** documentation: [https://documenter.getpostman.com/view/8881646/TW6wJoQY](https://documenter.getpostman.com/view/8881646/TW6wJoQY)
 
 ### Class Diagram
