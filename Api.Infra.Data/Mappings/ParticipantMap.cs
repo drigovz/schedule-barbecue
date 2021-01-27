@@ -15,11 +15,16 @@ namespace Api.Infra.Data.Mappings
             builder.Property(x => x.Name)
                    .IsRequired();
 
+            builder.Property(x => x.ContribuitionValue)
+                   .HasColumnType("decimal(18,2)");
+
             builder.Property(x => x.SugestedValue)
-                   .HasDefaultValue(0);
+                   .HasDefaultValue(0)
+                   .HasColumnType("decimal(18,2)");
 
             builder.Property(x => x.SugestedValueWithDink)
-                   .HasDefaultValue(0);          
+                   .HasDefaultValue(0)
+                   .HasColumnType("decimal(18,2)");
         }
     }
 }
