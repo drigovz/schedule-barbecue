@@ -1,8 +1,0 @@
-{
-    "database": {
-        "source":"localhost,1433",
-        "catalog":"BarbecueDb",
-        "userId=":"sa",
-        "password":"sa12345@BD"
-    }
-}

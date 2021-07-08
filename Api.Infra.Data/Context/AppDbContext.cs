@@ -1,6 +1,7 @@
 ﻿using Api.Domain.Entities;
 using Api.Infra.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace Api.Infra.Data.Context
 {
@@ -17,7 +18,15 @@ namespace Api.Infra.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=[Server]; initial catalog=BarbecueDb; user id=[User]; password=[Password]; Integrated Security=False;");
+            var pathEnvFile = Path.GetFullPath("../.env");
+
+            DotNetEnv.Env.Load(pathEnvFile);
+            var server = DotNetEnv.Env.GetString("SQL_SERVER_ADDRESS");
+            var catalog = DotNetEnv.Env.GetString("SQL_CATALOG");
+            var userId = DotNetEnv.Env.GetString("SQL_USER_ID");
+            var password = DotNetEnv.Env.GetString("SQL_PASSWORD");
+        
+            optionsBuilder.UseSqlServer($"Data Source={server}; initial catalog={catalog}; user id={userId}; password={password}; Integrated Security=False;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
