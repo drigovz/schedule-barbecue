@@ -17,7 +17,7 @@ namespace Api.Infra.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-8SL6PE8; initial catalog=BarbecueDb; user id=sa; password=sa12345; Integrated Security=True");
+            optionsBuilder.UseSqlServer("Data Source=[Server]; initial catalog=BarbecueDb; user id=[User]; password=[Password]; Integrated Security=False;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
