@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bogus" Version="32.0.2" />
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+  <PackageReference Include="Faker.Net" Version="1.5.138" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="moq" Version="4.16.1" />
     <PackageReference Include="xunit" Version="2.4.0" />
@@ -16,6 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Api.Service\Api.Service.csproj" />
+    <ProjectReference Include="..\Api.Infra.CrossCutting\Api.Infra.CrossCutting.csproj" />
     <ProjectReference Include="..\Api.Domain\Api.Domain.csproj" />
   </ItemGroup>
 
