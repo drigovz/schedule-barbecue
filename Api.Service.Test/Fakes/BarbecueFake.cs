@@ -2,7 +2,7 @@ using Api.Domain.DTOs.Barbecues;
 using System;
 using System.Collections.Generic;
 
-namespace Api.Service.Test
+namespace Api.Service.Test.Fakes
 {
    public class BarbecueFake
    {

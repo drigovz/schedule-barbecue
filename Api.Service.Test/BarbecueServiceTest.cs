@@ -1,5 +1,6 @@
 using Api.Domain.DTOs.Barbecues;
 using Api.Domain.Interfaces.Services.BarbecueService;
+using Api.Service.Test.Fakes;
 using Moq;
 using System.Threading.Tasks;
 using Xunit;
@@ -40,6 +41,20 @@ namespace Api.Service.Test
          var result = await _service.GetAsync(Id);
 
          Assert.Null(result);
+      }
+
+      [Fact]
+      public async Task Should_be_return_list_of_barbecues()
+      {
+         _serviceMock = new Mock<IBarbecueService>();
+         _serviceMock.Setup(m => m.GetAllAsync())
+                     .ReturnsAsync(barbecues);
+         _service = _serviceMock.Object;
+
+         var barbecuesList = await _service.GetAllAsync();
+
+         Assert.NotNull(barbecuesList);
+         Assert.NotEmpty(barbecuesList);
       }
    }
 }
