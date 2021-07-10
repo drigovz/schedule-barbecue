@@ -11,6 +11,7 @@
   <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
   <PackageReference Include="Faker.Net" Version="1.5.138" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="16.10.0" />
     <PackageReference Include="moq" Version="4.16.1" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
