@@ -12,7 +12,8 @@ namespace Api.Service.Test
       private IBarbecueService _service;
       private Mock<IBarbecueService> _serviceMock;
 
-      [Fact(DisplayName = "Should be possivel to execute GET method")]
+      //[Fact(DisplayName = "Should be possivel to execute GET method")]
+      [Fact]
       public async Task Should_be_possivel_to_execute_GET_method()
       {
          // Act
@@ -55,6 +56,22 @@ namespace Api.Service.Test
 
          Assert.NotNull(barbecuesList);
          Assert.NotEmpty(barbecuesList);
+      }
+
+      [Fact]
+      public async Task Should_be_possible_to_create_new_barbecue()
+      {
+         _serviceMock = new Mock<IBarbecueService>();
+         _serviceMock.Setup(m => m.PostAsync(barbecueDto))
+                     .ReturnsAsync(barbecueDto);
+         _service = _serviceMock.Object;
+         
+         var result = await _service.PostAsync(barbecueDto);
+
+         Assert.NotNull(result);
+         Assert.NotNull(result.Id);
+         Assert.Equal(barbecueDto.Description, result.Description);
+         Assert.Equal(barbecueDto.AdditionalNotes, result.AdditionalNotes);
       }
    }
 }

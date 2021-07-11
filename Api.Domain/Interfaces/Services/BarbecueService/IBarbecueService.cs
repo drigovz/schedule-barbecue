@@ -10,8 +10,8 @@ namespace Api.Domain.Interfaces.Services.BarbecueService
     {
         Task<IEnumerable<BarbecueDTO>> GetAllAsync();
         Task<BarbecueDetailsDTO> GetAsync(int id);
-        Task<BarbecueDTO> PostAsync(BarbecueDTO category);
-        Task<BarbecueDTO> PutAsync(BarbecueDTO category);
+        Task<BarbecueDTO> PostAsync(BarbecueDTO barbecue);
+        Task<BarbecueDTO> PutAsync(BarbecueDTO barbecue);
         Task<bool> DeleteAsync(int id);
         Task<IEnumerable<Participant>> BarbecueParticipants(int barbecueId);
         Task<ParticipantDTO> AddParticipantsOnBarbecue(ParticipantDTO participant);
