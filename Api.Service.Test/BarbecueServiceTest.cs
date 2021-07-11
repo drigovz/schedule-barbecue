@@ -73,5 +73,22 @@ namespace Api.Service.Test
          Assert.Equal(barbecueDto.Description, result.Description);
          Assert.Equal(barbecueDto.AdditionalNotes, result.AdditionalNotes);
       }
+
+      [Fact]
+      public async Task Should_be_possible_update_barbecue()
+      {
+         _serviceMock = new Mock<IBarbecueService>();
+         _serviceMock.Setup(m => m.PutAsync(barbecueDto))
+                     .ReturnsAsync(barbecueDto);
+         _service = _serviceMock.Object;
+
+         var result = await  _service.PutAsync(barbecueDto);
+
+         Assert.NotNull(result);
+         Assert.NotNull(result.Id);
+         Assert.Equal(barbecueDto.Id, result.Id);
+         Assert.Equal(barbecueDto.Description, result.Description);
+         Assert.Equal(barbecueDto.AdditionalNotes, result.AdditionalNotes);
+      }
    }
 }
