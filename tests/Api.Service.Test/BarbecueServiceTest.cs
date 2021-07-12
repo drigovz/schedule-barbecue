@@ -69,7 +69,6 @@ namespace Api.Service.Test
          var result = await _service.PostAsync(barbecueDto);
 
          Assert.NotNull(result);
-         Assert.NotNull(result.Id);
          Assert.Equal(barbecueDto.Description, result.Description);
          Assert.Equal(barbecueDto.AdditionalNotes, result.AdditionalNotes);
       }
@@ -85,7 +84,6 @@ namespace Api.Service.Test
          var result = await  _service.PutAsync(barbecueDto);
 
          Assert.NotNull(result);
-         Assert.NotNull(result.Id);
          Assert.Equal(barbecueDto.Id, result.Id);
          Assert.Equal(barbecueDto.Description, result.Description);
          Assert.Equal(barbecueDto.AdditionalNotes, result.AdditionalNotes);

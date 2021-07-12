@@ -18,7 +18,7 @@ namespace Api.Infra.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var pathEnvFile = Path.GetFullPath("../.env");
+            var pathEnvFile = Path.GetFullPath("../../.env");
 
             DotNetEnv.Env.Load(pathEnvFile);
             var server = DotNetEnv.Env.GetString("SQL_SERVER_ADDRESS");

@@ -2,19 +2,19 @@
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Application", "Api.Application\Api.Application.csproj", "{14039E89-31B5-46E2-BF5E-F0F8EB8FB2A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Application", "src\Api.Application\Api.Application.csproj", "{14039E89-31B5-46E2-BF5E-F0F8EB8FB2A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Infra.CrossCutting", "Api.Infra.CrossCutting\Api.Infra.CrossCutting.csproj", "{E2F1DE65-4364-43FC-8ED7-BD046221AC77}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Infra.CrossCutting", "src\Api.Infra.CrossCutting\Api.Infra.CrossCutting.csproj", "{E2F1DE65-4364-43FC-8ED7-BD046221AC77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Infra.Data", "Api.Infra.Data\Api.Infra.Data.csproj", "{1E201B39-6261-4AD5-86BC-3C8E94BDA5B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Infra.Data", "src\Api.Infra.Data\Api.Infra.Data.csproj", "{1E201B39-6261-4AD5-86BC-3C8E94BDA5B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Domain", "Api.Domain\Api.Domain.csproj", "{B067F69C-38D6-492B-AC30-6D44EE8FC15B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Domain", "src\Api.Domain\Api.Domain.csproj", "{B067F69C-38D6-492B-AC30-6D44EE8FC15B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Service", "Api.Service\Api.Service.csproj", "{484EA611-69B1-4349-939E-370F8DB8AFDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Service", "src\Api.Service\Api.Service.csproj", "{484EA611-69B1-4349-939E-370F8DB8AFDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Test", "Api.Test\Api.Test.csproj", "{057C9318-4B4F-4596-9CA6-E3307DD6ABF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Test", "tests\Api.Test\Api.Test.csproj", "{057C9318-4B4F-4596-9CA6-E3307DD6ABF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Service.Test", "Api.Service.Test\Api.Service.Test.csproj", "{5E140A65-8BE7-4BC5-8DA7-624591B6FD59}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Service.Test", "tests\Api.Service.Test\Api.Service.Test.csproj", "{5E140A65-8BE7-4BC5-8DA7-624591B6FD59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
