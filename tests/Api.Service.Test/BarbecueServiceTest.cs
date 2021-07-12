@@ -2,6 +2,7 @@ using Api.Domain.DTOs.Barbecues;
 using Api.Domain.Interfaces.Services.BarbecueService;
 using Api.Service.Test.Fakes;
 using Moq;
+using System;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -87,6 +88,34 @@ namespace Api.Service.Test
          Assert.Equal(barbecueDto.Id, result.Id);
          Assert.Equal(barbecueDto.Description, result.Description);
          Assert.Equal(barbecueDto.AdditionalNotes, result.AdditionalNotes);
+      }
+
+      [Fact]
+      public async Task Should_be_possible_delete_barbecue()
+      {
+         _serviceMock = new Mock<IBarbecueService>();
+         _serviceMock.Setup(m => m.DeleteAsync(It.IsAny<int>()))
+                     .ReturnsAsync(true);
+         _service = _serviceMock.Object;
+         
+         var result = await _service.DeleteAsync(Id);
+
+         Assert.True(result);
+      }
+
+      [Fact]
+      public async Task Should_be_return_false_when_try_to_delete_unexistent_barbecue()
+      {
+         _serviceMock = new Mock<IBarbecueService>();
+         _serviceMock.Setup(m => m.DeleteAsync(It.IsAny<int>()))
+                     .ReturnsAsync(false);
+         _service = _serviceMock.Object;
+         
+         Random random = new Random();
+         int randomId = random.Next(20000, 50000);
+         var result = await _service.DeleteAsync(randomId);
+
+         Assert.False(result);
       }
    }
 }
