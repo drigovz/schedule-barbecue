@@ -1,9 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Api.Domain.DTOs.Barbecues;
+using Api.Domain.Entities;
 using Api.Domain.Interfaces.Services.BarbecueService;
 using Api.Service.Test.Fakes;
 using Moq;
-using System;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Api.Service.Test
@@ -15,7 +17,7 @@ namespace Api.Service.Test
 
       //[Fact(DisplayName = "Should be possivel to execute GET method")]
       [Fact]
-      public async Task Should_be_possivel_to_execute_GET_method()
+      public async Task Should_be_possivel_to_get_barbecue_by_id()
       {
          // Act
          _serviceMock = new Mock<IBarbecueService>();
@@ -34,7 +36,7 @@ namespace Api.Service.Test
 
       [Fact]
       public async Task Should_be_return_null_object()
-      { 
+      {
          _serviceMock = new Mock<IBarbecueService>();
          _serviceMock.Setup(m => m.GetAsync(It.IsAny<int>()))
                      .Returns(Task.FromResult((BarbecueDetailsDTO)null));
@@ -66,7 +68,7 @@ namespace Api.Service.Test
          _serviceMock.Setup(m => m.PostAsync(barbecueDto))
                      .ReturnsAsync(barbecueDto);
          _service = _serviceMock.Object;
-         
+
          var result = await _service.PostAsync(barbecueDto);
 
          Assert.NotNull(result);
@@ -82,7 +84,7 @@ namespace Api.Service.Test
                      .ReturnsAsync(barbecueDto);
          _service = _serviceMock.Object;
 
-         var result = await  _service.PutAsync(barbecueDto);
+         var result = await _service.PutAsync(barbecueDto);
 
          Assert.NotNull(result);
          Assert.Equal(barbecueDto.Id, result.Id);
@@ -97,7 +99,7 @@ namespace Api.Service.Test
          _serviceMock.Setup(m => m.DeleteAsync(It.IsAny<int>()))
                      .ReturnsAsync(true);
          _service = _serviceMock.Object;
-         
+
          var result = await _service.DeleteAsync(Id);
 
          Assert.True(result);
@@ -110,12 +112,26 @@ namespace Api.Service.Test
          _serviceMock.Setup(m => m.DeleteAsync(It.IsAny<int>()))
                      .ReturnsAsync(false);
          _service = _serviceMock.Object;
-         
+
          Random random = new Random();
          int randomId = random.Next(20000, 50000);
          var result = await _service.DeleteAsync(randomId);
 
          Assert.False(result);
+      }
+
+      [Fact]
+      public async Task Should_be_return_a_list_of_barbecues_participants()
+      {
+         _serviceMock = new Mock<IBarbecueService>();
+         _serviceMock.Setup(m => m.BarbecueParticipants(Id)).ReturnsAsync(participantsEntity);
+         _service = _serviceMock.Object;
+
+         var result = await _service.BarbecueParticipants(Id);
+         var expected = typeof(List<Participant>);
+
+         Assert.NotNull(result);
+         Assert.IsType(expected, result);
       }
    }
 }
