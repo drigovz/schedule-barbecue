@@ -20,6 +20,7 @@ namespace Api.Service.Test.Fakes
       public BarbecueDetailsDTO barbecueDetailsDto { get; set; } = new BarbecueDetailsDTO();
       public List<ParticipantDTO> participants { get; set; } = new List<ParticipantDTO>();
       public List<Participant> participantsEntity { get; set; } = new List<Participant>();
+      public ParticipantDTO participantDTO { get; set; } = new ParticipantDTO();
 
       public BarbecueFake()
       {
@@ -97,6 +98,15 @@ namespace Api.Service.Test.Fakes
 
             participantsEntity.Add(entity);
          }
+
+         participantDTO = new ParticipantDTO
+         {
+            Name = Faker.Name.FullName(),
+            ContribuitionValue = Faker.RandomNumber.Next(10, 40),
+            SugestedValue = Faker.RandomNumber.Next(0, 50),
+            SugestedValueWithDink = Faker.RandomNumber.Next(0, 50),
+            BarbecueId = Faker.RandomNumber.Next(10, 40)
+         };
       }
    }
 }

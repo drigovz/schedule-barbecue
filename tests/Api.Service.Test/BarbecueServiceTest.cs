@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Api.Domain.DTOs.Barbecues;
+using Api.Domain.DTOs.Participants;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces.Services.BarbecueService;
 using Api.Service.Test.Fakes;
@@ -132,6 +133,21 @@ namespace Api.Service.Test
 
          Assert.NotNull(result);
          Assert.IsType(expected, result);
+      }
+
+      [Fact]
+      public async Task Should_be_possible_to_add_participants_on_barbecue()
+      {
+         _serviceMock = new Mock<IBarbecueService>();
+         _serviceMock.Setup(m => m.AddParticipantsOnBarbecue(participantDTO)).ReturnsAsync(participantDTO);
+         _service = _serviceMock.Object;
+
+         var result = await _service.AddParticipantsOnBarbecue(participantDTO);
+
+         Assert.NotNull(result);
+         Assert.True(result.BarbecueId > 0);
+         Assert.NotEmpty(result.Name);
+         Assert.Equal(participantDTO.Name, result.Name);
       }
    }
 }
