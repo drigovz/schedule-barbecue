@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Api.Domain.DTOs.Barbecues;
-using Api.Domain.DTOs.Participants;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces.Services.BarbecueService;
 using Api.Service.Test.Fakes;
@@ -22,8 +21,7 @@ namespace Api.Service.Test
       {
          // Act
          _serviceMock = new Mock<IBarbecueService>();
-         _serviceMock.Setup(m => m.GetAsync(Id))
-                     .ReturnsAsync(barbecueDetailsDto);
+         _serviceMock.Setup(m => m.GetAsync(Id)).ReturnsAsync(barbecueDetailsDto);
          _service = _serviceMock.Object;
 
          // Arrange
@@ -39,8 +37,7 @@ namespace Api.Service.Test
       public async Task Should_be_return_null_object()
       {
          _serviceMock = new Mock<IBarbecueService>();
-         _serviceMock.Setup(m => m.GetAsync(It.IsAny<int>()))
-                     .Returns(Task.FromResult((BarbecueDetailsDTO)null));
+         _serviceMock.Setup(m => m.GetAsync(It.IsAny<int>())).Returns(Task.FromResult((BarbecueDetailsDTO)null));
          _service = _serviceMock.Object;
 
          var result = await _service.GetAsync(Id);
@@ -52,8 +49,7 @@ namespace Api.Service.Test
       public async Task Should_be_return_list_of_barbecues()
       {
          _serviceMock = new Mock<IBarbecueService>();
-         _serviceMock.Setup(m => m.GetAllAsync())
-                     .ReturnsAsync(barbecues);
+         _serviceMock.Setup(m => m.GetAllAsync()).ReturnsAsync(barbecues);
          _service = _serviceMock.Object;
 
          var barbecuesList = await _service.GetAllAsync();
@@ -66,8 +62,7 @@ namespace Api.Service.Test
       public async Task Should_be_possible_to_create_new_barbecue()
       {
          _serviceMock = new Mock<IBarbecueService>();
-         _serviceMock.Setup(m => m.PostAsync(barbecueDto))
-                     .ReturnsAsync(barbecueDto);
+         _serviceMock.Setup(m => m.PostAsync(barbecueDto)).ReturnsAsync(barbecueDto);
          _service = _serviceMock.Object;
 
          var result = await _service.PostAsync(barbecueDto);
@@ -81,8 +76,7 @@ namespace Api.Service.Test
       public async Task Should_be_possible_update_barbecue()
       {
          _serviceMock = new Mock<IBarbecueService>();
-         _serviceMock.Setup(m => m.PutAsync(barbecueDto))
-                     .ReturnsAsync(barbecueDto);
+         _serviceMock.Setup(m => m.PutAsync(barbecueDto)).ReturnsAsync(barbecueDto);
          _service = _serviceMock.Object;
 
          var result = await _service.PutAsync(barbecueDto);
@@ -97,8 +91,7 @@ namespace Api.Service.Test
       public async Task Should_be_possible_delete_barbecue()
       {
          _serviceMock = new Mock<IBarbecueService>();
-         _serviceMock.Setup(m => m.DeleteAsync(It.IsAny<int>()))
-                     .ReturnsAsync(true);
+         _serviceMock.Setup(m => m.DeleteAsync(It.IsAny<int>())).ReturnsAsync(true);
          _service = _serviceMock.Object;
 
          var result = await _service.DeleteAsync(Id);
@@ -110,8 +103,7 @@ namespace Api.Service.Test
       public async Task Should_be_return_false_when_try_to_delete_unexistent_barbecue()
       {
          _serviceMock = new Mock<IBarbecueService>();
-         _serviceMock.Setup(m => m.DeleteAsync(It.IsAny<int>()))
-                     .ReturnsAsync(false);
+         _serviceMock.Setup(m => m.DeleteAsync(It.IsAny<int>())).ReturnsAsync(false);
          _service = _serviceMock.Object;
 
          Random random = new Random();
