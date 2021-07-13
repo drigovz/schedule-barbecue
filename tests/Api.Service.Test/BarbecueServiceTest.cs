@@ -149,5 +149,17 @@ namespace Api.Service.Test
          Assert.NotEmpty(result.Name);
          Assert.Equal(participantDTO.Name, result.Name);
       }
+
+      [Fact]
+      public async Task Should_be_possible_to_remove_participant_of_barbecue()
+      {
+         _serviceMock = new Mock<IBarbecueService>();
+         _serviceMock.Setup(m => m.RemoveParticipantsFromBarbecue(participantDTO.BarbecueId)).ReturnsAsync(true);
+         _service = _serviceMock.Object;
+
+         var result = await _service.RemoveParticipantsFromBarbecue(participantDTO.BarbecueId);
+
+         Assert.True(result);
+      }
    }
 }
