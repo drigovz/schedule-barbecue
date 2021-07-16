@@ -33,7 +33,31 @@ namespace Api.Service.Test.Fakes
          Date = Faker.Identification.DateOfBirth();
          Description = Faker.Lorem.Words(30).ToString();
          AdditionalNotes = Faker.Lorem.Words(50).ToString();
-         TotalParticipants = Faker.RandomNumber.Next(5);
+         
+         for (int i = 0; i < 10; i++)
+         {
+            var participantsDto = new ParticipantDTO()
+            {
+               Name = Faker.Name.FullName(),
+               ContribuitionValue = Faker.RandomNumber.Next(10, 40),
+               SugestedValue = Faker.RandomNumber.Next(0, 50),
+               SugestedValueWithDink = Faker.RandomNumber.Next(0, 50),
+               BarbecueId = Faker.RandomNumber.Next(10, 40)
+            };
+
+            participants.Add(participantsDto);
+
+            var entity = new Participant(
+               Faker.Name.FullName(),
+               Faker.RandomNumber.Next(10, 40),
+               Faker.RandomNumber.Next(0, 50),
+               Faker.RandomNumber.Next(0, 50)
+            );
+
+            participantsEntity.Add(entity);
+         }
+
+         TotalParticipants = participants.Count;
 
          TotalValue = 0;
          if (participants.Count > 0)
@@ -75,29 +99,6 @@ namespace Api.Service.Test.Fakes
             TotalValue = Faker.RandomNumber.Next(20),
             Participants = participants
          };
-
-         for (int i = 0; i < 10; i++)
-         {
-            var participantsDto = new ParticipantDTO()
-            {
-               Name = Faker.Name.FullName(),
-               ContribuitionValue = Faker.RandomNumber.Next(10, 40),
-               SugestedValue = Faker.RandomNumber.Next(0, 50),
-               SugestedValueWithDink = Faker.RandomNumber.Next(0, 50),
-               BarbecueId = Faker.RandomNumber.Next(10, 40)
-            };
-
-            participants.Add(participantsDto);
-
-            var entity = new Participant(
-               Faker.Name.FullName(),
-               Faker.RandomNumber.Next(10, 40),
-               Faker.RandomNumber.Next(0, 50),
-               Faker.RandomNumber.Next(0, 50)
-            );
-
-            participantsEntity.Add(entity);
-         }
 
          participantDTO = new ParticipantDTO
          {
