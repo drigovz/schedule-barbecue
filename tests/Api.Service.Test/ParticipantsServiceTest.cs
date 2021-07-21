@@ -74,7 +74,6 @@ namespace Api.Service.Test
          var result = await _service.PutAsync(participant);
 
          Assert.NotNull(result);
-         Assert.NotNull(result.Id);
          Assert.Equal(participantDTO.ContribuitionValue, result.ContribuitionValue);
          Assert.Equal(participantDTO.Name, result.Name);
          Assert.Equal(participantDTO.ContribuitionValue, result.ContribuitionValue);
